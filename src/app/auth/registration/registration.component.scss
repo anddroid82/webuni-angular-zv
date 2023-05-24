@@ -1,0 +1,16 @@
+mat-card {
+    width: 60%;
+    margin: 24px auto;
+
+    mat-form-field {
+        margin: 5px 0;
+    }
+
+    .registration-form {
+        display: flex;
+        flex-direction: column;
+        mat-form-field {
+            margin-bottom: 6px;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    height: 84px;
+
+    .uername {
+        font-weight: bold;
+    }
+
+    .title {
+        vertical-align: middle;
+        line-height: 84px;
+    }
+
+    .logo {
+        vertical-align: middle;
+        padding: 5px;
+    }
+}

@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Regisztráció</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="registration()">
+            <div class="registration-form">
+                <mat-form-field appearance="outline">
+                    <mat-label>név</mat-label>
+                    <input matInput placeholder="név" formControlName="username">
+                    <mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
+                    <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>email cím</mat-label>
+                    <input matInput placeholder="email cím" formControlName="email">
+                    <mat-error *ngIf="f['email'].errors?.['required']">Az email cím megadása kötelező!</mat-error>
+                    <mat-error *ngIf="f['email'].errors?.['email']">Az email cím formátuma nem megfelelő!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>telefonszám</mat-label>
+                    <input matInput placeholder="telefonszám" formControlName="phone">
+                    <mat-error *ngIf="f['phone'].errors?.['required']">A telefonszám megadása
+                        kötelező!</mat-error>
+                </mat-form-field>
+                <div>
+                    <mat-checkbox formControlName="accept" color="primary">elfogadom az adatkezelési
+                        nyilatkozatot</mat-checkbox>
+                    <div class="error" *ngIf="f['accept'].errors">Az adatkezelési nyilatkozat megadása kötelező!</div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="registration()" color="primary" [disabled]="!form.valid">Regisztráció</button>
+    </mat-card-actions>
+</mat-card>
