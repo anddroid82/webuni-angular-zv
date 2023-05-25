@@ -8,7 +8,7 @@
         <div class="translate-form-col">
           <mat-form-field appearance="outline">
             <mat-label>forrásnyelv (automatikus a fordítandó szöveg alapján)</mat-label>
-            <mat-select formControlName="source" (selectionChange)="translate()">
+            <mat-select formControlName="source" (selectionChange)="translate()" tabindex="1">
               <mat-option *ngFor="let lang of languages" [value]="lang.language">
                 {{ lang.name }} - {{ lang.language }}
               </mat-option>
@@ -17,17 +17,17 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>fordítandó szöveg</mat-label>
-            <textarea matInput placeholder="fordítandó szöveg" formControlName="text" (change)="detectSource()"></textarea>
+            <textarea matInput placeholder="fordítandó szöveg" formControlName="text" (change)="detectSource()" tabindex="2"></textarea>
             <mat-error *ngIf="f['text'].errors?.['required']">A szöveg megadása kötelező!</mat-error>
             <mat-error *ngIf="f['text'].errors?.['minlength']">A szöveg minimum {{f['text'].errors?.['minlength'].requiredLength}} karakter hosszú!</mat-error>
           </mat-form-field>
         </div>
         <div class="translate-form-col">
-          <button mat-button (click)="detectSource()" color="primary" [disabled]="!f['text'].valid || (translateLeft<=0 && !loggedIn)">
+          <button mat-button (click)="detectSource()" color="primary" [disabled]="!f['text'].valid || (translateLeft<=0 && !loggedIn)" tabindex="4">
             <mat-icon>radar</mat-icon>
             Nyelvfelismerés
           </button>
-          <button mat-button (click)="translate()" color="primary" [disabled]="!form.valid || (translateLeft<=0 && !loggedIn)">
+          <button mat-button (click)="translate()" color="primary" [disabled]="!form.valid || (translateLeft<=0 && !loggedIn)" tabindex="5">
             <mat-icon>translate</mat-icon>
             Fordítás
           </button>
@@ -35,7 +35,7 @@
         <div class="translate-form-col">
           <mat-form-field appearance="outline">
             <mat-label>célnyelv</mat-label>
-            <mat-select formControlName="target" (selectionChange)="translate()">
+            <mat-select formControlName="target" (selectionChange)="translate()" tabindex="3">
               <mat-option *ngFor="let lang of languages" [value]="lang.language">
                 {{ lang.name }} - {{ lang.language }}
               </mat-option>

@@ -35,6 +35,7 @@ export class AuthService {
   }
 
   clearUsername(){
+    this.getUsernameSubject().next('');
     localStorage.removeItem(environment.KEY_USERNAME);
   }
 

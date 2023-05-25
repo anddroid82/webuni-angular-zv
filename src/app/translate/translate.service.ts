@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environments'
 
 
@@ -8,14 +9,14 @@ import { environment } from 'src/environments/environments'
 })
 export class TranslateService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
-  getNumberOfFreeTranslate():number {
+  getNumberOfFreeTranslate(): number {
     return environment.freeTranslateNumber;
   }
 
-  getNumberOfTranslateLeft():number {
-    return this.getNumberOfFreeTranslate()-this.getNumberOfTranslates();
+  getNumberOfTranslateLeft(): number {
+    return this.getNumberOfFreeTranslate() - this.getNumberOfTranslates();
   }
 
   getNumberOfTranslates(): number {
@@ -37,22 +38,22 @@ export class TranslateService {
     return this.http.get<any>(url);
   }
 
-  translate(text:string,source:string,target:string){
+  translate(text: string, source: string, target: string) {
     let url = `${environment.GOOGLE_API_URL}`;
     let formData = new FormData();
-    formData.append('key',environment.GOOGLE_API_KEY);
-    formData.append('q',text);
-    formData.append('source',source);
-    formData.append('target',target);
-    return this.http.post<any>(url,formData);
+    formData.append('key', environment.GOOGLE_API_KEY);
+    formData.append('q', text);
+    formData.append('source', source);
+    formData.append('target', target);
+    return this.http.post<any>(url, formData);
   }
 
-  detectLanguage(text:string) {
+  detectLanguage(text: string) {
     let url = `${environment.GOOGLE_API_URL}detect`;
     let formData = new FormData();
-    formData.append('key',environment.GOOGLE_API_KEY);
-    formData.append('q',text);
-    return this.http.post<any>(url,formData);
+    formData.append('key', environment.GOOGLE_API_KEY);
+    formData.append('q', text);
+    return this.http.post<any>(url, formData);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class MenuComponent implements OnInit {
 
   username: string = '';
+  isLoggedIn:boolean = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router:Router) {
 
   }
 
@@ -18,7 +20,13 @@ export class MenuComponent implements OnInit {
     this.username = this.authService.getUsername();
     this.authService.getUsernameSubject().subscribe( u => {
       this.username = u;
+      this.isLoggedIn = this.authService.isLoggedIn();
     });
+  }
+
+  logout(){
+    this.authService.clearUsername();
+    this.router.navigateByUrl('/registration');
   }
 
 }
