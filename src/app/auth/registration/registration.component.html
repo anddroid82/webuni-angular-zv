@@ -9,7 +9,7 @@
                     <mat-label>név</mat-label>
                     <input matInput placeholder="név" formControlName="username">
                     <mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
-                    <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>
+                    <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum {{f['username'].errors?.['minlength'].requiredLength}} karakter hosszú!</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>email cím</mat-label>

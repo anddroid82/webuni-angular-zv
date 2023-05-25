@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class MenuComponent implements OnInit {
 
-  username: string|undefined;
+  username: string = '';
 
   constructor(private authService: AuthService) {
 
@@ -16,6 +16,9 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = this.authService.getUsername();
+    this.authService.getUsernameSubject().subscribe( u => {
+      this.username = u;
+    });
   }
 
 }

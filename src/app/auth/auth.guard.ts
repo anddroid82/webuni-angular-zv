@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { TranslateService } from '../translate/translate.service';
+import { environment } from 'src/environments/environments'
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.translateService.getNumberOfTranslates() >= 3 && this.authService.getUsername() === undefined) {
+    if (this.translateService.getNumberOfTranslates() >= environment.freeTranslateNumber && this.authService.getUsername() === '') {
       this.router.navigateByUrl('registration');
       return false
     }

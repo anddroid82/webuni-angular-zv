@@ -10,6 +10,14 @@ export class TranslateService {
 
   constructor(private http:HttpClient) { }
 
+  getNumberOfFreeTranslate():number {
+    return environment.freeTranslateNumber;
+  }
+
+  getNumberOfTranslateLeft():number {
+    return this.getNumberOfFreeTranslate()-this.getNumberOfTranslates();
+  }
+
   getNumberOfTranslates(): number {
     let n = localStorage.getItem(environment.KEY_NUMBEROFTRANSLATES);
     if (!n) {
@@ -36,6 +44,14 @@ export class TranslateService {
     formData.append('q',text);
     formData.append('source',source);
     formData.append('target',target);
+    return this.http.post<any>(url,formData);
+  }
+
+  detectLanguage(text:string) {
+    let url = `${environment.GOOGLE_API_URL}detect`;
+    let formData = new FormData();
+    formData.append('key',environment.GOOGLE_API_KEY);
+    formData.append('q',text);
     return this.http.post<any>(url,formData);
   }
 

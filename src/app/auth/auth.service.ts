@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import {environment} from 'src/environments/environments'
 
 @Injectable({
@@ -6,18 +7,30 @@ import {environment} from 'src/environments/environments'
 })
 export class AuthService {
 
-  constructor() { }
+  usernameSubject:BehaviorSubject<string>;
+  constructor() {
+    this.usernameSubject = new BehaviorSubject(this.getUsernameFromStorage());
+  }
 
-  getUsername():string|undefined {
+  getUsernameFromStorage(){
     let userString = localStorage.getItem(environment.KEY_USERNAME);
-    if (!userString) {
-      return undefined;
-    }else{
-      return userString;
-    }
+    return userString || '';
+  }
+
+  getUsername():string {
+    return this.usernameSubject.value;
+  }
+
+  getUsernameSubject(){
+    return this.usernameSubject;
+  }
+
+  isLoggedIn(){
+    return this.getUsername()!=='';
   }
 
   setUsername(name:string) {
+    this.usernameSubject.next(name);
     localStorage.setItem(environment.KEY_USERNAME,name);
   }
 
