@@ -5,58 +5,49 @@
   <mat-card-content>
     <form [formGroup]="form">
       <div class="translate-form">
-        <mat-form-field appearance="outline">
-          <mat-label>fordítandó szöveg</mat-label>
-          <textarea
-            matInput
-            placeholder="fordítandó szöveg"
-            formControlName="text"
-          ></textarea>
-          <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
-                <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>-->
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>forrásnyelv</mat-label>
-          <mat-select formControlName="source">
-            <mat-option *ngFor="let lang of languages" [value]="lang.language">
-              {{ lang.name }} - {{ lang.language }}
-            </mat-option>
-          </mat-select>
-          <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
+        <div class="translate-form-col">
+          <mat-form-field appearance="outline">
+            <mat-label>forrásnyelv</mat-label>
+            <mat-select formControlName="source">
+              <mat-option *ngFor="let lang of languages" [value]="lang.language">
+                {{ lang.name }} - {{ lang.language }}
+              </mat-option>
+            </mat-select>
+            <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
           <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>-->
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>célnyelv</mat-label>
-          <mat-select formControlName="target">
-            <mat-option *ngFor="let lang of languages" [value]="lang.language">
-              {{ lang.name }} - {{ lang.language }}
-            </mat-option>
-          </mat-select>
-          <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
-                    <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>-->
-        </mat-form-field>
-        <button
-          mat-button
-          (click)="translate()"
-          color="primary"
-          [disabled]="!form.valid"
-        >
-          Fordítás
-        </button>
-        <mat-form-field appearance="outline">
-          <mat-label>fordított szöveg</mat-label>
-          <textarea
-            matInput
-            placeholder="fordítandó szöveg"
-            readonly="true"
-            >{{ translatedText }}</textarea
-          >
-          <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>fordítandó szöveg</mat-label>
+            <textarea matInput placeholder="fordítandó szöveg" formControlName="text"></textarea>
+            <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
                 <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>-->
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+        <div class="translate-form-col">
+          <button mat-button (click)="translate()" translate-form-color="primary" [disabled]="!form.valid">
+            Fordítás
+          </button>
+        </div>
+        <div class="translate-form-col">
+          <mat-form-field appearance="outline">
+            <mat-label>célnyelv</mat-label>
+            <mat-select formControlName="target">
+              <mat-option *ngFor="let lang of languages" [value]="lang.language">
+                {{ lang.name }} - {{ lang.language }}
+              </mat-option>
+            </mat-select>
+            <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
+                    <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>-->
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>fordított szöveg</mat-label>
+            <textarea matInput placeholder="fordítandó szöveg" readonly="true">{{ translatedText }}</textarea>
+            <!--<mat-error *ngIf="f['username'].errors?.['required']">A név megadása kötelező!</mat-error>
+                <mat-error *ngIf="f['username'].errors?.['minlength']">A név minimum 3 karakter hosszú!</mat-error>-->
+          </mat-form-field>
+        </div>
       </div>
     </form>
   </mat-card-content>
   <mat-card-actions> </mat-card-actions>
 </mat-card>
-<p>teszt</p>

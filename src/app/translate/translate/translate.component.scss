@@ -1,5 +1,5 @@
 mat-card {
-    width: 60%;
+    width: 80%;
     margin: 24px auto;
     padding: 24px;
 
@@ -9,10 +9,31 @@ mat-card {
 
     .translate-form {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        width: 100%;
 
-        mat-form-field {
-            margin-bottom: 6px;
+        .translate-form-col {
+            justify-content: space-between;
+            display: flex;
+            flex-direction: column;
+
+            mat-form-field {
+                width: 100%;
+                margin-bottom: 6px;
+            }
+
+            &:first-child, &:last-child {
+                flex-grow: 5;
+            }
+
+            &:nth-child(2) {
+                flex-grow: 1;
+                justify-content: space-around;
+            }
+
         }
+
+        
+        
     }
 }
