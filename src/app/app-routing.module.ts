@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
 import { AuthCovidGuard } from './auth/auth-covid.guard';
 
 const routes: Routes = [
@@ -17,11 +16,6 @@ const routes: Routes = [
     path:'covid',
     canActivate: [AuthCovidGuard],
     loadChildren: () => import('./covid/covid.module').then( m => m.CovidModule)
-  },
-  {
-    path:'translate',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./translate/translate.module').then( m => m.TranslateModule)
   }
 ];
 
