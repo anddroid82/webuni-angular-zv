@@ -6,11 +6,16 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartComponent } from './chart/chart.component'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
-    CovidComponent
+    CovidComponent,
+    ChartComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +25,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    NgxChartsModule
   ]
 })
 export class CovidModule { }
