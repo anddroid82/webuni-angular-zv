@@ -4,24 +4,23 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { CovidService } from '../covid/covid.service';
 import { environment } from 'src/environments/environments'
-import { TranslateService } from '../translate/translate.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private translateService: TranslateService, private router:Router) {
+export class AuthCovidGuard implements CanActivate {
+  constructor(private authService: AuthService, private covidService: CovidService, private router:Router) {
 
   }
-
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.translateService.getNumberOfTranslates() >= environment.freeCovidSearch && this.authService.getUsername() === '') {
-      this.router.navigateByUrl('registration');
-      return false
-    }
-    return true;
+      if (this.covidService.getNumberOfCovidSearch() >= environment.freeCovidSearch && this.authService.getUsername() === '') {
+        this.router.navigateByUrl('registration');
+        return false
+      }
+      return true;
   }
-
+  
 }

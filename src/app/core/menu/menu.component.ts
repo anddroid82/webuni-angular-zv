@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-menu',
@@ -9,6 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class MenuComponent implements OnInit {
 
+  app_name: string = environment.APP_NAME;
   username: string = '';
   isLoggedIn:boolean = false;
 

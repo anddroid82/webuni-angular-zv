@@ -1,0 +1,32 @@
+mat-card {
+    width: 80%;
+    margin: 24px auto;
+    padding: 24px;
+
+    mat-form-field {
+        margin: 5px 0;
+    }
+
+    mat-card-actions {
+        margin-left: 10px;
+    }
+    
+    .covid-result-element {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        .cre-key {
+            width: 30%;
+        }
+        &:hover {
+            background: #ccc;
+        }
+    }
+    .even {
+        background: #eee;
+    }
+    .odd {
+        background: #ddd;
+    }
+    
+}

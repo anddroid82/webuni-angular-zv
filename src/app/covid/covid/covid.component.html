@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Covid kereső</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label>Ország</mat-label>
+            <input type="text" placeholder="Ország választása" matInput [formControl]="searchControl"
+                [matAutocomplete]="country" [readonly]="!(this.loggedIn || this.covidSearchLeft > 0)">
+            <mat-autocomplete autoActiveFirstOption #country="matAutocomplete" (optionSelected)="countryChanged()">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <div *ngIf="covidData" class="covid-result">
+            <div class="covid-result-element" *ngFor="let key of covidKeys;even as e" [ngClass]="e?'even':'odd'">
+                <div class="cre-key"><strong>{{key}}</strong></div>
+                <div class="cre-value">{{covidData[key]}}</div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <div *ngIf="!loggedIn">
+            <p>Hátralévő keresések száma: {{covidSearchLeft<0?0:covidSearchLeft}} </p>
+                    <p *ngIf="covidSearchLeft<=0"><a routerLink="/registration">Regisztrálj</a> a haszálathoz!</p>
+        </div>
+    </mat-card-actions>
+</mat-card>

@@ -41,7 +41,7 @@ export class RegistrationComponent {
     if (this.form.valid) {
       //mehet a regisztráció
       this.authService.setUsername(this.form.value.username);
-      this.router.navigateByUrl('translate');
+      this.router.navigateByUrl('covid');
     }
 
     this.regClicked=true;
